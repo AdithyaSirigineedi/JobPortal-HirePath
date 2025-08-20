@@ -44,7 +44,7 @@ HirePath is a job portal built for a company’s hiring needs. It connects **Emp
 
 1. Clone the repository:
 
-   git clone https://github.com/<your-username>/hirepath.git
+   git clone https://github.com/AdithyaSirigineedi/JobPortal-HirePath.git
    
 
 2. Install dependencies for both backend and frontend:
