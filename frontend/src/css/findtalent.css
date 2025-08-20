@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+body {
+  background-color: #f0f2f5;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #212121;
+}
+
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.talent-container {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 40px 30px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+body.dark-mode .talent-container {
+  background-color: #1e1e1e;
+  box-shadow: 0 12px 30px rgba(255, 255, 255, 0.05);
+}
+
+.title {
+  font-size: 40px;
+  font-weight: 700;
+  text-align: center;
+  color: #212121;
+  margin-bottom: 50px;
+}
+
+body.dark-mode .title {
+  color: #e0e0e0;
+}
+
+.applicant-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #e0e0e0;
+  border-radius: 16px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s, transform 0.2s;
+}
+
+body.dark-mode .applicant-card {
+  background: #2a2a2a;
+  border-color: #444;
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.03);
+}
+
+.applicant-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .applicant-card:hover {
+  box-shadow: 0 12px 30px rgba(255, 255, 255, 0.05);
+}
+
+.applicant-card p {
+  font-size: 20px;
+  color: #333;
+  margin: 12px 0;
+  line-height: 1.6;
+}
+
+body.dark-mode .applicant-card p {
+  color: #e0e0e0;
+}
+
+.button-group {
+  margin-top: 25px;
+  display: flex;
+  gap: 20px;
+}
+
+.accept-button,
+.decline-button {
+  padding: 12px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+.accept-button {
+  background-color: #2e7d32;
+  color: #fff;
+}
+
+.accept-button:hover {
+  background-color: #1b5e20;
+  transform: scale(1.05);
+}
+
+.decline-button {
+  background-color: #c62828;
+  color: #fff;
+}
+
+.decline-button:hover {
+  background-color: #8e0000;
+  transform: scale(1.05);
+}
+
+body.dark-mode .accept-button {
+  background-color: #388e3c;
+}
+
+body.dark-mode .accept-button:hover {
+  background-color: #1b5e20;
+}
+
+body.dark-mode .decline-button {
+  background-color: #e53935;
+}
+
+body.dark-mode .decline-button:hover {
+  background-color: #b71c1c;
+}
+
+a {
+  color: #1e88e5;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+body.dark-mode a {
+  color: #90caf9;
+}

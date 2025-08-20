@@ -1,0 +1,166 @@
+.job-details-container {
+  max-width: 900px;
+  margin: 4rem auto;
+  padding: 3rem;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+}
+
+body.dark-mode .job-details-container {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.05);
+}
+.job-details-container h2 {
+  font-size: 2.4rem;
+  margin-bottom: 2rem;
+  color: #222;
+  text-align: center;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 1rem;
+}
+
+body.dark-mode .job-details-container h2 {
+  color: #ffffff;
+  border-bottom: 2px solid #444;
+}
+
+.job-details-container p {
+  font-size: 1.25rem;
+  margin: 1rem 0;
+  color: #444;
+  line-height: 1.6;
+}
+
+body.dark-mode .job-details-container p {
+  color: #ccc;
+}
+
+.application-form {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.application-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+body.dark-mode .application-form label {
+  color: #ddd;
+}
+
+.application-form input,
+.application-form select {
+  padding: 0.8rem 1rem;
+  margin-top: 0.6rem;
+  border: 1.5px solid #ccc;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease;
+  color: #222;
+}
+
+body.dark-mode .application-form input,
+body.dark-mode .application-form select {
+  background-color: #2b2b2b;
+  border: 1.5px solid #555;
+  color: #f0f0f0;
+}
+
+.application-form input:focus,
+.application-form select:focus {
+  border-color: #007bff;
+  outline: none;
+  background-color: #fff;
+}
+
+body.dark-mode .application-form input:focus,
+body.dark-mode .application-form select:focus {
+  background-color: #1f1f1f;
+  border-color: #66b2ff;
+}
+
+.application-form input[type="file"] {
+  padding: 0.6rem;
+  font-size: 1rem;
+}
+
+.application-form button {
+  grid-column: span 2;
+  padding: 1rem 1.5rem;
+  margin-top: 2rem;
+  background-color: #1d3557;
+  color: white;
+  font-size: 25px;
+  font-weight: 480;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.application-form button:hover {
+  background-color: #457b9d;
+}
+
+.timer-container {
+  background-color: #f5f5f5;
+  padding: 10px;
+  font-size: 18px;
+  margin: 20px 0;
+  border-left: 5px solid #2196f3;
+  color: #222;
+}
+
+body.dark-mode .timer-container {
+  background-color: #2a2a2a;
+  color: #ddd;
+  border-left: 5px solid #64b5f6;
+}
+
+@media (max-width: 700px) {
+  .application-form {
+    grid-template-columns: 1fr;
+  }
+
+  .application-form button {
+    grid-column: span 1;
+  }
+
+  .job-details-container h2 {
+    font-size: 2rem;
+  }
+
+  .job-details-container p {
+    font-size: 1.1rem;
+  }
+
+  .application-form label {
+    font-size: 1.1rem;
+  }
+
+  .application-form input,
+  .application-form select {
+    font-size: 25px;
+  }
+
+  .application-form button {
+    font-size: 1.1rem;
+  }
+}
+
+.error1, .error2, .error3, .error4, .error5, .error6 {
+  color: red;
+  font-size: 20px;
+  display: block;
+}

@@ -1,0 +1,130 @@
+.apply-jobs-container {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  font-size: 22px;
+}
+
+body.dark-mode .apply-jobs-container {
+  color: #e0e0e0;
+}
+
+.apply-jobs-container h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 35px;
+  color: #1d3557;
+}
+
+body.dark-mode .apply-jobs-container h1 {
+  color: #a8caff;
+}
+
+.job-search-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.job-search-bar input {
+  width: 100%;
+  max-width: 600px;
+  padding: 1rem 1.2rem; 
+  font-size: 27px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.2s ease;
+  background-color: #fff;
+  color: #333;
+}
+
+body.dark-mode .job-search-bar input {
+  background-color: #1e1e1e;
+  border: 1px solid #555;
+  color: #f0f0f0;
+}
+
+.job-search-bar input:focus {
+  outline: none;
+  border-color: #1d3557;
+}
+
+body.dark-mode .job-search-bar input:focus {
+  border-color: #a8caff;
+}
+
+.job-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.job-card {
+  background-color: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+body.dark-mode .job-card {
+  background-color: #1f1f1f;
+  border: 1px solid #444;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+}
+
+.job-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .job-card:hover {
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.08);
+}
+
+.job-card h3 {
+  font-size: 30px; 
+  margin-bottom: 0.75rem;
+  color: #1d3557;
+}
+
+body.dark-mode .job-card h3 {
+  color: #a8caff;
+}
+
+.job-card p {
+  font-size: 1.1rem; 
+  line-height: 1.6;
+  margin: 0.5rem 0;
+  color: #444;
+}
+
+body.dark-mode .job-card p {
+  color: #ccc;
+}
+body.dark-mode ::selection {
+  color:black;
+  background-color: #e0e0e0;
+}
+.job-card button {
+  margin-top: 1.2rem;
+  padding: 0.8rem 1.5rem;
+  background-color: #1d3557;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background-color 0.2s ease;
+}
+
+.job-card button:hover {
+  background-color: #457b9d;
+}

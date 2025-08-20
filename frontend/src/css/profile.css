@@ -1,0 +1,135 @@
+.profile-container {
+  padding: 35px;
+  font-family: Arial, sans-serif;
+  max-width: 1000px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 1% auto;
+  background-color: white;
+  color: black;
+  min-height: calc(100vh - 2%);
+}
+
+
+body.dark-mode .profile-container {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.profile-container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.profile-card {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  gap: 40px;
+  justify-content: center;
+}
+
+body.dark-mode .profile-card {
+  background-color: #1e1e1e;
+  border-color: #444;
+}
+
+.profile-image-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+}
+
+body.dark-mode .profile-avatar {
+  border-color: #666;
+}
+
+.upload {
+  width: 100%;
+  padding: 8px 16px;
+  background-color: skyblue;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 19px;
+  margin-bottom: 350px;
+}
+
+body.dark-mode .upload {
+  background-color: #3399ff;
+}
+
+.upload:hover {
+  background-color: #0056b3;
+}
+
+body.dark-mode .upload:hover {
+  background-color: #1a75d1;
+}
+
+.profile-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 300px;
+}
+
+.profile-details input,
+.profile-details textarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  font-size: 20px;
+  background-color: white;
+  color: black;
+}
+
+body.dark-mode .profile-details input,
+body.dark-mode .profile-details textarea {
+  background-color: #2a2a2a;
+  border-color: #555;
+  color: white;
+}
+
+body.dark-mode ::placeholder{
+  color:white;
+}
+
+.save-btn {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.save-btn:hover {
+  background-color: #218838;
+}
+
+body.dark-mode .save-btn {
+  background-color: #3cb371;
+}
+
+body.dark-mode .save-btn:hover {
+  background-color: #2e8b57;
+}

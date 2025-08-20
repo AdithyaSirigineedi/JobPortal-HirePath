@@ -1,0 +1,83 @@
+.add-job-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #f4f4f4;
+  border-radius: 8px;
+  color: black;
+}
+
+body.dark-mode .add-job-container {
+  background: #1e1e1e;
+  color: #e0e0e0;
+}
+
+.add-job-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.job-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.job-form label {
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.job-form input,
+.job-form textarea {
+  padding: 0.8rem;
+  font-size: 22px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  margin-top: 0.3rem;
+  background-color: white;
+  color: black;
+}
+
+body.dark-mode .job-form input,
+body.dark-mode .job-form textarea {
+  background-color: #2a2a2a;
+  color: white;
+  border-color: #555;
+}
+
+body.dark-mode .job-form ::placeholder {
+  color: white;
+}
+
+.job-form textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.job-form button {
+  margin-top: 1rem;
+  padding: 0.7rem;
+  background-color: purple;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 19px;
+}
+
+body.dark-mode h2{
+  color:whitesmoke;  
+}
+
+.job-form button:hover {
+  background-color: rgb(230, 120, 230);
+}
+
+body.dark-mode .job-form button {
+  background-color: #9b59b6;
+}
+
+body.dark-mode .job-form button:hover {
+  background-color: #be77d6;
+}
