@@ -20,8 +20,8 @@ if (!fs.existsSync('./uploads')) {
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "MySql@123",
-    database: "HirePath"
+    password: "Your password",
+    database: "your db name"
 });
 
 db.connect((err) => {
@@ -189,8 +189,8 @@ app.post('/users/email', (req, res) => {
         port: 587,
         secure: false,
         auth: {
-            user: "adithya.collector@gmail.com",
-            pass: "jobl xgha ebdc psdf"
+            user: "your emial",
+            pass: "your password"
         }
     });
     const options = {
@@ -230,8 +230,8 @@ app.post('/acceptEmail',(req,res) => {
         port: 587,
         secure: false,
         auth: {
-            user: "adithya.collector@gmail.com",
-            pass: "jobl xgha ebdc psdf"
+            user: "your email",
+            pass: "your password"
         }
     });
     const options1 = {
@@ -273,8 +273,8 @@ app.post('/declineEmail',(req,res) => {
         port: 587,
         secure: false,
         auth: {
-            user: "adithya.collector@gmail.com",
-            pass: "jobl xgha ebdc psdf"
+            user: "your email",
+            pass: "your password"
         }
     });
     const options2 = {
