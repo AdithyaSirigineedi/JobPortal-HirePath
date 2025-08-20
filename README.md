@@ -65,7 +65,7 @@ HirePath is a job portal built for a company’s hiring needs. It connects **Emp
    cd ../frontend && npm start
    
 
-5. Open [http://localhost:3000](http://localhost:5000) in your browser.
+5. Open [http://localhost:5000](http://localhost:5000) in your browser.
 
 ---
 
