@@ -1,26 +1,92 @@
-*{
-  padding:0;
-  margin:0;
+* {
+  padding: 0;
+  margin: 0;
   font-family: sans-serif;
 }
-.back-btn{
-  width:15%;
-  height:10%;
-  padding:12px;
-  font-size:22px;
+
+.back-btn {
+  width: 15%;
+  height: 10%;
+  padding: 12px;
+  font-size: 22px;
   font-weight: 500;
-  color:aliceblue;
+  color: aliceblue;
   background-color: red;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
-.result-container{
-  margin-top:1%;
+
+.back-btn:hover {
+  background-color: #c70000;
 }
-.result-container .ant-result-subtitle{
-  font-size:29px;
+
+.result-container {
+  margin-top: 1%;
+  text-align: center;
+  padding: 1rem;
+}
+
+.result-container .ant-result-subtitle {
+  font-size: 29px;
   font-weight: 490;
-  color:red;
+  color: red;
 }
+
 .result-container .ant-result-title {
   font-size: 48px;
-  color:red;
+  color: red;
+}
+
+/* 🌐 Responsive Styles */
+@media (max-width: 1024px) {
+  .back-btn {
+    width: 25%;
+    font-size: 20px;
+  }
+
+  .result-container .ant-result-subtitle {
+    font-size: 26px;
+  }
+
+  .result-container .ant-result-title {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 768px) {
+  .back-btn {
+    width: 35%;
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .result-container .ant-result-subtitle {
+    font-size: 23px;
+  }
+
+  .result-container .ant-result-title {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .back-btn {
+    width: 50%;
+    font-size: 16px;
+    padding: 8px;
+  }
+
+  .result-container {
+    margin-top: 5%;
+  }
+
+  .result-container .ant-result-subtitle {
+    font-size: 20px;
+  }
+
+  .result-container .ant-result-title {
+    font-size: 30px;
+  }
 }

@@ -14,6 +14,7 @@ body.dark-mode .job-details-container {
   color: #e0e0e0;
   box-shadow: 0 10px 25px rgba(255, 255, 255, 0.05);
 }
+
 .job-details-container h2 {
   font-size: 2.4rem;
   margin-bottom: 2rem;
@@ -128,39 +129,101 @@ body.dark-mode .timer-container {
   border-left: 5px solid #64b5f6;
 }
 
-@media (max-width: 700px) {
-  .application-form {
-    grid-template-columns: 1fr;
-  }
-
-  .application-form button {
-    grid-column: span 1;
-  }
-
-  .job-details-container h2 {
-    font-size: 2rem;
-  }
-
-  .job-details-container p {
-    font-size: 1.1rem;
-  }
-
-  .application-form label {
-    font-size: 1.1rem;
-  }
-
-  .application-form input,
-  .application-form select {
-    font-size: 25px;
-  }
-
-  .application-form button {
-    font-size: 1.1rem;
-  }
-}
-
 .error1, .error2, .error3, .error4, .error5, .error6 {
   color: red;
   font-size: 20px;
   display: block;
+}
+
+@media (max-width: 1024px) {
+  .job-details-container {
+    padding: 2.5rem;
+  }
+  .job-details-container h2 {
+    font-size: 2.2rem;
+  }
+  .job-details-container p {
+    font-size: 1.15rem;
+  }
+  .application-form label {
+    font-size: 1.15rem;
+  }
+  .application-form input,
+  .application-form select {
+    font-size: 1rem;
+  }
+  .application-form button {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .job-details-container {
+    padding: 2rem;
+    margin: 3rem 1rem;
+  }
+  .application-form {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .application-form button {
+    grid-column: span 1;
+  }
+  .job-details-container h2 {
+    font-size: 1.9rem;
+  }
+  .job-details-container p {
+    font-size: 1.05rem;
+  }
+  .application-form label {
+    font-size: 1.05rem;
+  }
+  .application-form input,
+  .application-form select {
+    font-size: 0.95rem;
+  }
+  .application-form button {
+    font-size: 1.1rem;
+  }
+  .timer-container {
+    font-size: 16px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .job-details-container {
+    padding: 1.5rem;
+    margin: 2rem 1rem;
+    border-radius: 15px;
+  }
+  .job-details-container h2 {
+    font-size: 1.6rem;
+  }
+  .job-details-container p {
+    font-size: 1rem;
+  }
+  .application-form {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .application-form label {
+    font-size: 1rem;
+  }
+  .application-form input,
+  .application-form select {
+    font-size: 0.9rem;
+    padding: 0.7rem;
+  }
+  .application-form button {
+    font-size: 1rem;
+    padding: 0.9rem 1rem;
+  }
+  .timer-container {
+    font-size: 15px;
+    padding: 8px;
+  }
+  .error1, .error2, .error3, .error4, .error5, .error6 {
+    font-size: 17px;
+  }
 }

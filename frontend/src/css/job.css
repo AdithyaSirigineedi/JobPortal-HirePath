@@ -15,6 +15,12 @@ body.dark-mode .add-job-container {
 .add-job-container h2 {
   text-align: center;
   margin-bottom: 1.5rem;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+body.dark-mode h2 {
+  color: whitesmoke;
 }
 
 .job-form {
@@ -25,6 +31,7 @@ body.dark-mode .add-job-container {
 .job-form label {
   margin-bottom: 1rem;
   font-weight: 500;
+  font-size: 20px;
 }
 
 .job-form input,
@@ -57,17 +64,15 @@ body.dark-mode .job-form ::placeholder {
 
 .job-form button {
   margin-top: 1rem;
-  padding: 0.7rem;
+  padding: 0.9rem;
   background-color: purple;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 19px;
-}
-
-body.dark-mode h2{
-  color:whitesmoke;  
+  font-size: 20px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
 }
 
 .job-form button:hover {
@@ -80,4 +85,83 @@ body.dark-mode .job-form button {
 
 body.dark-mode .job-form button:hover {
   background-color: #be77d6;
+}
+
+/* 🌐 Responsive Design */
+@media (max-width: 900px) {
+  .add-job-container {
+    max-width: 80%;
+    padding: 1.8rem;
+  }
+
+  .add-job-container h2 {
+    font-size: 28px;
+  }
+
+  .job-form label {
+    font-size: 19px;
+  }
+
+  .job-form input,
+  .job-form textarea {
+    font-size: 20px;
+  }
+
+  .job-form button {
+    font-size: 19px;
+    padding: 0.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .add-job-container {
+    max-width: 90%;
+    padding: 1.5rem;
+    border-radius: 10px;
+  }
+
+  .add-job-container h2 {
+    font-size: 25px;
+  }
+
+  .job-form label {
+    font-size: 18px;
+  }
+
+  .job-form input,
+  .job-form textarea {
+    font-size: 18px;
+    padding: 0.7rem;
+  }
+
+  .job-form button {
+    font-size: 17px;
+    padding: 0.7rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .add-job-container {
+    padding: 1.2rem;
+    margin: 1rem;
+  }
+
+  .add-job-container h2 {
+    font-size: 22px;
+  }
+
+  .job-form label {
+    font-size: 16px;
+  }
+
+  .job-form input,
+  .job-form textarea {
+    font-size: 16px;
+    padding: 0.6rem;
+  }
+
+  .job-form button {
+    font-size: 16px;
+    padding: 0.6rem;
+  }
 }

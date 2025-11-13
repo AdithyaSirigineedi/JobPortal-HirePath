@@ -4,7 +4,7 @@
   align-items: center;
   min-height: 100vh;
   background-color: #f5f5f5;
-  margin-left:30%;
+  margin-left: 30%;
 }
 
 .status-container .ant-steps-item-title {
@@ -15,4 +15,44 @@
 .status-container .ant-steps-item-description {
   font-size: 16px !important;
   color: #555 !important;
+}
+
+@media (max-width: 1024px) {
+  .status-container {
+    margin-left: 15%;
+  }
+  .status-container .ant-steps-item-title {
+    font-size: 18px !important;
+  }
+  .status-container .ant-steps-item-description {
+    font-size: 15px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .status-container {
+    flex-direction: column;
+    margin-left: 0;
+    padding: 2rem 1rem;
+  }
+  .status-container .ant-steps-item-title {
+    font-size: 17px !important;
+  }
+  .status-container .ant-steps-item-description {
+    font-size: 14px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .status-container {
+    flex-direction: column;
+    margin-left: 0;
+    padding: 1.5rem 0.5rem;
+  }
+  .status-container .ant-steps-item-title {
+    font-size: 16px !important;
+  }
+  .status-container .ant-steps-item-description {
+    font-size: 13px !important;
+  }
 }

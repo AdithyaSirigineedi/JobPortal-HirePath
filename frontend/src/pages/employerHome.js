@@ -257,6 +257,5 @@ const EmployerHome = () => {
       </footer>
     </>
   );
-};
-
+}
 export default EmployerHome;

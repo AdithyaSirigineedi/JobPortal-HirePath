@@ -26,6 +26,7 @@ body.dark-mode .apply-jobs-container h1 {
   display: flex;
   justify-content: center;
   margin-bottom: 2rem;
+  padding: 0 1rem;
 }
 
 .job-search-bar input {
@@ -59,6 +60,7 @@ body.dark-mode .job-search-bar input:focus {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
+  padding: 0 1rem;
 }
 
 .job-card {
@@ -108,10 +110,12 @@ body.dark-mode .job-card h3 {
 body.dark-mode .job-card p {
   color: #ccc;
 }
+
 body.dark-mode ::selection {
-  color:black;
+  color: black;
   background-color: #e0e0e0;
 }
+
 .job-card button {
   margin-top: 1.2rem;
   padding: 0.8rem 1.5rem;
@@ -127,4 +131,93 @@ body.dark-mode ::selection {
 
 .job-card button:hover {
   background-color: #457b9d;
+}
+
+@media (max-width: 1024px) {
+  .apply-jobs-container {
+    font-size: 20px;
+    padding: 1rem 2rem;
+  }
+  .apply-jobs-container h1 {
+    font-size: 30px;
+  }
+  .job-search-bar input {
+    font-size: 24px;
+    max-width: 500px;
+  }
+  .job-card h3 {
+    font-size: 26px;
+  }
+  .job-card p {
+    font-size: 1rem;
+  }
+  .job-card button {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .apply-jobs-container {
+    font-size: 18px;
+    padding: 1rem;
+  }
+  .apply-jobs-container h1 {
+    font-size: 28px;
+  }
+  .job-search-bar {
+    flex-direction: column;
+    align-items: center;
+  }
+  .job-search-bar input {
+    font-size: 22px;
+    width: 100%;
+    max-width: 100%;
+    padding: 0.9rem 1rem;
+  }
+  .job-list {
+    gap: 1.5rem;
+  }
+  .job-card {
+    padding: 1.5rem;
+  }
+  .job-card h3 {
+    font-size: 24px;
+  }
+  .job-card p {
+    font-size: 0.95rem;
+  }
+  .job-card button {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .apply-jobs-container {
+    font-size: 16px;
+    padding: 0.5rem;
+  }
+  .apply-jobs-container h1 {
+    font-size: 25px;
+  }
+  .job-search-bar input {
+    font-size: 18px;
+    padding: 0.8rem;
+  }
+  .job-list {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .job-card {
+    padding: 1.2rem;
+  }
+  .job-card h3 {
+    font-size: 22px;
+  }
+  .job-card p {
+    font-size: 0.9rem;
+  }
+  .job-card button {
+    font-size: 0.9rem;
+    padding: 0.7rem 1rem;
+  }
 }

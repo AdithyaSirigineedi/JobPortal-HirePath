@@ -79,6 +79,7 @@ body.dark-mode .applicant-card p {
   margin-top: 25px;
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .accept-button,
@@ -140,4 +141,83 @@ a:hover {
 
 body.dark-mode a {
   color: #90caf9;
+}
+
+@media (max-width: 1024px) {
+  .talent-container {
+    padding: 30px 20px;
+    margin: 40px auto;
+  }
+
+  .title {
+    font-size: 34px;
+    margin-bottom: 40px;
+  }
+
+  .applicant-card p {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .talent-container {
+    padding: 25px 15px;
+    margin: 30px 10px;
+  }
+
+  .title {
+    font-size: 30px;
+  }
+
+  .applicant-card {
+    padding: 20px;
+  }
+
+  .applicant-card p {
+    font-size: 17px;
+  }
+
+  .button-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+
+  .accept-button,
+  .decline-button {
+    width: 100%;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .talent-container {
+    padding: 20px 12px;
+    margin: 20px 5px;
+    border-radius: 12px;
+  }
+
+  .title {
+    font-size: 26px;
+    margin-bottom: 30px;
+  }
+
+  .applicant-card {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .applicant-card p {
+    font-size: 16px;
+  }
+
+  .accept-button,
+  .decline-button {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  a {
+    font-size: 16px;
+  }
 }

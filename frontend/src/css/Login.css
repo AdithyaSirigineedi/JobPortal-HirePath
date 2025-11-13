@@ -244,3 +244,151 @@ h2 {
 .dark-mode .error {
   color: #ff6666;
 }
+@media (max-width: 1024px) {
+  .login-container {
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 5%;
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+  .login-form input {
+    font-size: 22px;
+  }
+
+  .login-button {
+    font-size: 20px;
+    padding: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    width: 85%;
+    margin-left: 7%;
+    margin-top: 8%;
+    padding: 18px;
+  }
+
+  h2 {
+    font-size: 28px;
+  }
+
+  .account-option img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .greeting {
+    font-size: 18px;
+  }
+
+  .login-form input {
+    font-size: 20px;
+  }
+
+  .forgot {
+    font-size: 16px;
+  }
+
+  .login-button {
+    font-size: 20px;
+    padding: 12px;
+  }
+
+  .signup-text {
+    font-size: 18px;
+  }
+
+  ::placeholder {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    background: #eef6fc;
+  }
+
+  .login-container {
+    width: 90%;
+    margin: 10% auto;
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 25px;
+  }
+
+  .account-types {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .account-option {
+    width: 70%;
+    margin-bottom: 10px;
+  }
+
+  .greeting {
+    font-size: 17px;
+  }
+
+  .login-form label {
+    font-size: 13px;
+  }
+
+  .login-form input {
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .forgot {
+    font-size: 15px;
+  }
+
+  .login-button {
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .signup-text {
+    font-size: 16px;
+  }
+
+  .toggle-password {
+    font-size: 18px;
+  }
+
+  ::placeholder {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 360px) {
+  .login-container {
+    width: 95%;
+    margin-top: 15%;
+    padding: 12px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  .login-form input {
+    font-size: 16px;
+  }
+
+  .login-button {
+    font-size: 17px;
+  }
+
+  .signup-text {
+    font-size: 15px;
+  }
+}

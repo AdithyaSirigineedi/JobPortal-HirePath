@@ -151,8 +151,139 @@ body.dark-mode .revealed-message p {
   color: #a5d6a7;
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .scratchcard-grid {
     grid-template-columns: 1fr;
+  }
+} */
+@media (max-width: 1024px) {
+  .scratchcard-wrapper {
+    padding: 30px 20px;
+  }
+
+  .scratchcard-container {
+    width: 280px;
+    height: 280px;
+  }
+
+  .revealed-message {
+    width: 280px;
+    height: 280px;
+    padding: 20px;
+  }
+
+  .prize-content h2 {
+    font-size: 2rem;
+  }
+
+  .prize-content p {
+    font-size: 1rem;
+  }
+
+  .revealed-message h2 {
+    font-size: 1.8rem;
+  }
+
+  .revealed-message p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .scratchcard-wrapper {
+    padding: 20px;
+    min-height: 70vh;
+  }
+
+  .scratchcard-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .scratchcard-container {
+    width: 260px;
+    height: 260px;
+  }
+
+  .revealed-message {
+    width: 260px;
+    height: 260px;
+    padding: 15px;
+  }
+
+  .prize-content h2 {
+    font-size: 1.7rem;
+  }
+
+  .prize-content p {
+    font-size: 0.95rem;
+  }
+
+  .revealed-message h2 {
+    font-size: 1.6rem;
+  }
+
+  .revealed-message p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .scratchcard-wrapper {
+    padding: 15px;
+  }
+
+  .scratchcard-container {
+    width: 230px;
+    height: 230px;
+  }
+
+  .revealed-message {
+    width: 230px;
+    height: 230px;
+    padding: 10px;
+  }
+
+  .prize-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .prize-content p {
+    font-size: 0.9rem;
+  }
+
+  .revealed-message h2 {
+    font-size: 1.4rem;
+  }
+
+  .revealed-message p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .scratchcard-wrapper {
+    padding: 10px;
+  }
+
+  .scratchcard-container {
+    width: 200px;
+    height: 200px;
+  }
+
+  .revealed-message {
+    width: 200px;
+    height: 200px;
+    padding: 8px;
+  }
+
+  .prize-content h2,
+  .revealed-message h2 {
+    font-size: 1.3rem;
+  }
+
+  .prize-content p,
+  .revealed-message p {
+    font-size: 0.85rem;
   }
 }

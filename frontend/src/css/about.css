@@ -50,6 +50,7 @@ body.dark-mode .about-hero p {
 .stat-box {
   text-align: center;
   min-width: 150px;
+  flex: 1 1 200px;
 }
 
 .stat-box h2 {
@@ -120,13 +121,6 @@ body.dark-mode .about-testimonials h2 {
   gap: 2rem;
 }
 
-@media (min-width: 700px) {
-  .testimonials-grid {
-    flex-direction: row;
-    justify-content: center;
-  }
-}
-
 .testimonial {
   background-color: #f9f9f9;
   padding: 2rem;
@@ -137,6 +131,7 @@ body.dark-mode .about-testimonials h2 {
   color: #444;
   flex: 1;
   max-width: 450px;
+  margin: 0 auto;
 }
 
 body.dark-mode .testimonial {
@@ -169,4 +164,104 @@ body.dark-mode .testimonial footer {
 body.dark-mode .about-footer {
   border-top: 1px solid #444;
   color: #aaa;
+}
+
+@media (max-width: 1024px) {
+  .about-hero h1 {
+    font-size: 60px;
+  }
+  .about-hero p {
+    font-size: 20px;
+  }
+  .stat-box h2 {
+    font-size: 38px;
+  }
+  .stat-box p {
+    font-size: 22px;
+  }
+  .about-values h2 {
+    font-size: 34px;
+  }
+  .about-values p {
+    font-size: 20px;
+  }
+  .testimonial {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    padding: 2rem 4%;
+    font-size: 17px;
+  }
+  .about-hero h1 {
+    font-size: 50px;
+  }
+  .about-hero p {
+    font-size: 19px;
+  }
+  .stat-box h2 {
+    font-size: 35px;
+  }
+  .stat-box p {
+    font-size: 20px;
+  }
+  .about-values h2 {
+    font-size: 30px;
+  }
+  .about-values p {
+    font-size: 19px;
+  }
+  .about-testimonials h2 {
+    font-size: 32px;
+  }
+  .testimonial {
+    font-size: 19px;
+    padding: 1.5rem;
+  }
+  .testimonial footer {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-container {
+    padding: 1.5rem 3%;
+    font-size: 16px;
+  }
+  .about-hero h1 {
+    font-size: 38px;
+  }
+  .about-hero p {
+    font-size: 17px;
+  }
+  .about-stats {
+    gap: 1.5rem;
+  }
+  .stat-box h2 {
+    font-size: 30px;
+  }
+  .stat-box p {
+    font-size: 18px;
+  }
+  .about-values h2 {
+    font-size: 25px;
+  }
+  .about-values p {
+    font-size: 17px;
+  }
+  .about-testimonials h2 {
+    font-size: 26px;
+  }
+  .testimonial {
+    font-size: 17px;
+    padding: 1.2rem;
+  }
+  .testimonial footer {
+    font-size: 16px;
+  }
+  .about-footer {
+    font-size: 17px;
+  }
 }
