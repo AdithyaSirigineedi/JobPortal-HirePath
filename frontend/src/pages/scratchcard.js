@@ -74,6 +74,6 @@ const Scratch = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Scratch;

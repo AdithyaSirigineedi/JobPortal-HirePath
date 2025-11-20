@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import '../css/job.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -36,7 +36,7 @@ const AddJob = () => {
       return;
     }
 
-    fetch('http://localhost:5000/jobPosting', {
+    fetch('https://jobportal-hirepath-production.up.railway.app/jobPosting', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

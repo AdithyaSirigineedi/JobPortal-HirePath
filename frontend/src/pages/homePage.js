@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState} from 'react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import '../css/home.css';
 import womanLottie from '../images/uiux designer.lottie';
 import manLottie from '../images/Programming.lottie';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ProfileLogo from '../images/profile.lottie';
 import ResumeLogo from '../images/resume.svg';
 import clockLogo from '../images/clock.svg';

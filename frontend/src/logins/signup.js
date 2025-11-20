@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 // import './signup.css';
 import '../css/signup.css';
 import EmployeeImage from '../images/employee-image.jpg';
@@ -79,7 +79,7 @@ const SignupForm = () => {
       setPasswordError('');
     }
       if (valid) {
-      fetch('http://localhost:5000/users/signup', {
+      fetch('https://jobportal-hirepath-production.up.railway.app/users/signup', {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

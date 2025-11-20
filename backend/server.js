@@ -18,10 +18,10 @@ if (!fs.existsSync('./uploads')) {
 }
 
 const db = mysql.createConnection({
-    host: "localhost",
+    host: "mysql.railway.internal",
     user: "root",
-    password: "Your password",
-    database: "your db name"
+    password: "wbnsvdCJBKfFaUURLMXvIMSeRBxFsJJe",
+    database: "railway"
 });
 
 db.connect((err) => {
@@ -189,8 +189,8 @@ app.post('/users/email', (req, res) => {
         port: 587,
         secure: false,
         auth: {
-            user: "your emial",
-            pass: "your password"
+            user: "adithya.collector@gmail.com",
+            pass: "jobl xgha ebdc psdf"
         }
     });
     const options = {
@@ -230,8 +230,8 @@ app.post('/acceptEmail',(req,res) => {
         port: 587,
         secure: false,
         auth: {
-            user: "your email",
-            pass: "your password"
+            user: "adithya.collector@gmail.com",
+            pass: "jobl xgha ebdc psdf"
         }
     });
     const options1 = {
@@ -273,8 +273,8 @@ app.post('/declineEmail',(req,res) => {
         port: 587,
         secure: false,
         auth: {
-            user: "your email",
-            pass: "your password"
+            user: "adithya.collector@gmail.com",
+            pass: "jobl xgha ebdc psdf"
         }
     });
     const options2 = {

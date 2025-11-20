@@ -1,4 +1,4 @@
-import React, { use, useEffect } from 'react';
+import { useEffect } from 'react';
 import CountUp from '../pages/counter.js';
 import '../css/about.css';
 

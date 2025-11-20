@@ -8,7 +8,7 @@ const FindTalent = () => {
 
     useEffect(() => {
         document.title = "Find-Talent | HirePath";
-        fetch('http://localhost:5000/getApplications')
+        fetch('https://jobportal-hirepath-production.up.railway.app/getApplications')
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
@@ -28,7 +28,7 @@ const FindTalent = () => {
 
         toast.success(`Application ${id} accepted`);
 
-        fetch('http://localhost:5000/acceptEmail', {
+        fetch('https://jobportal-hirepath-production.up.railway.app/acceptEmail', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -49,7 +49,7 @@ const FindTalent = () => {
                 console.error(error);
                 toast.error('Error while sending email');
             });
-        fetch(`http://localhost:5000/deleteApplication/${id}`, {
+        fetch('https://jobportal-hirepath-production.up.railway.app/deleteApplication', {
             method: "DELETE",
         })
             .then(res => res.json())
@@ -69,7 +69,7 @@ const FindTalent = () => {
         const { id, name, email, jobTitle } = applicant;
         toast.info(`Application ${id} Rejected`);
 
-        fetch('http://localhost:5000/declineEmail', {
+        fetch('https://jobportal-hirepath-production.up.railway.app/declineEmail', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -90,7 +90,7 @@ const FindTalent = () => {
                 console.error(error);
                 toast.error('Error while sending email');
             });
-        fetch(`http://localhost:5000/deleteApplication/${id}`, {
+        fetch('https://jobportal-hirepath-production.up.railway.app/deleteApplication', {
             method: "DELETE",
         })
             .then(res => res.json())

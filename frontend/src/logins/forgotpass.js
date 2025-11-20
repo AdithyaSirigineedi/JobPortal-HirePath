@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import EmployeeImage from '../images/employee-image.jpg';
 import JobSeekerImage from '../images/jobseeker.webp';
 import { useNavigate } from 'react-router-dom';
@@ -66,7 +66,7 @@ const Forgot = () => {
     }
 
     if (valid) {
-      fetch('http://localhost:5000/users/forgot', {
+      fetch('https://jobportal-hirepath-production.up.railway.app/users/forgot', {
       method: "POST",
       headers: {
     "Content-Type": "application/json",
@@ -183,6 +183,5 @@ const Forgot = () => {
       <ToastContainer position="top-right" autoClose={3000} pauseOnHover />
     </div>
   );
-};
-
+}
 export default Forgot;

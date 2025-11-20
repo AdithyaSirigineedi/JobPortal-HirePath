@@ -11,7 +11,7 @@ const ApplyJobs = () => {
   useEffect(() => {
     document.title = "Find-Jobs | HirePath";
 
-    fetch('http://localhost:5000/getJobs')
+    fetch('https://jobportal-hirepath-production.up.railway.app/getJobs')
       .then(response => response.json())
       .then(data => {
         if (data.success) {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 // import './home.css';
 import '../css/home.css';
@@ -197,7 +197,7 @@ const EmployerHome = () => {
             <details>
               <summary>Can I search for candidates manually?</summary>
               <br />
-              <p>Yes, use our Talent Search tool for proactive hiring.</p>
+              <p>Yes, our Talent Search tool for proactive hiring.</p>
             </details>
             <details>
               <summary>What are featured job postings?</summary>
@@ -258,4 +258,5 @@ const EmployerHome = () => {
     </>
   );
 }
+
 export default EmployerHome;

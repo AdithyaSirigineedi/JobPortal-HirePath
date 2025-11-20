@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import '../css/Login.css';
 import EmployeeImage from '../images/employee-image.jpg';
 import JobSeekerImage from '../images/jobseeker.webp';
@@ -76,7 +76,7 @@ const LoginForm = () => {
 
     if (valid) {
 
-      fetch('http://localhost:5000/users/login', {
+      fetch('https://jobportal-hirepath-production.up.railway.app/users/login', {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

@@ -34,7 +34,7 @@ const JobDetails = () => {
 
   const [jobData, setJobData] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:5000/getJobs')
+    fetch('https://jobportal-hirepath-production.up.railway.app/getJobs')
       .then(response => response.json())
       .then(data => {
         if (data.success) {
@@ -136,7 +136,7 @@ const JobDetails = () => {
 
     const { jobTitle } = job;
     if (isValid) {
-      fetch('http://localhost:5000/users/email', {
+      fetch('https://jobportal-hirepath-production.up.railway.app/users/email', {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -186,7 +186,7 @@ const JobDetails = () => {
       formData.append('jobTitle', job.jobTitle);
       formData.append('companyName', job.companyName);
 
-      fetch('http://localhost:5000/jobApplications', {
+      fetch('https://jobportal-hirepath-production.up.railway.app/jobApplications', {
         method: 'POST',
         body: formData
       })
