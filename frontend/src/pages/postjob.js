@@ -36,7 +36,7 @@ const AddJob = () => {
       return;
     }
 
-    fetch('https://jobportal-hirepath-production.up.railway.app/jobPosting', {
+    fetch('https://jobportal-hirepath.onrender.com/jobPosting', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
