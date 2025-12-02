@@ -8,7 +8,7 @@ const FindTalent = () => {
 
     useEffect(() => {
         document.title = "Find-Talent | HirePath";
-        fetch('https://jobportal-hirepath-production.up.railway.app/getApplications')
+        fetch('https://jobportal-hirepath.onrender.com/getApplications')
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
@@ -28,7 +28,7 @@ const FindTalent = () => {
 
         toast.success(`Application ${id} accepted`);
 
-        fetch('https://jobportal-hirepath-production.up.railway.app/acceptEmail', {
+        fetch('https://jobportal-hirepath.onrender.com/acceptEmail', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -49,7 +49,7 @@ const FindTalent = () => {
                 console.error(error);
                 toast.error('Error while sending email');
             });
-        fetch('https://jobportal-hirepath-production.up.railway.app/deleteApplication', {
+        fetch('https://jobportal-hirepath.onrender.com/deleteApplication', {
             method: "DELETE",
         })
             .then(res => res.json())
@@ -69,7 +69,7 @@ const FindTalent = () => {
         const { id, name, email, jobTitle } = applicant;
         toast.info(`Application ${id} Rejected`);
 
-        fetch('https://jobportal-hirepath-production.up.railway.app/declineEmail', {
+        fetch('https://jobportal-hirepath.onrender.com/declineEmail', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -90,7 +90,7 @@ const FindTalent = () => {
                 console.error(error);
                 toast.error('Error while sending email');
             });
-        fetch('https://jobportal-hirepath-production.up.railway.app/deleteApplication', {
+        fetch('https://jobportal-hirepath.onrender.com/deleteApplication', {
             method: "DELETE",
         })
             .then(res => res.json())
@@ -123,7 +123,7 @@ const FindTalent = () => {
                         <p>
                             <strong>Resume:</strong>{' '}
                             <a
-                                href={`http://localhost:5000/resumes/${applicant.resume}`}
+                                href={`https://jobportal-hirepath.onrender.com/resumes/${applicant.resume}`}
                                 target="_blank"
                                 rel="noreferrer"
                                 className="resume-link"
