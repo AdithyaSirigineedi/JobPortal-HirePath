@@ -3,9 +3,10 @@ const express = require("express");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const mysql = require("mysql2");
-const mailer = require("nodemailer");
+const nodemailer = require("nodemailer");
 const multer = require("multer");
 const fs = require("fs");
+const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -15,20 +16,30 @@ app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use("/resumes", express.static("uploads"));
 
-if (!fs.existsSync("./uploads")) fs.mkdirSync("./uploads");
+// Ensure uploads folder exists
+const uploadsDir = path.join(__dirname, "uploads");
+if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir);
 
-// MySQL / TiDB connection
+// Multer storage
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, uploadsDir),
+  filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`),
+});
+const upload = multer({ storage });
+
+// MySQL / TiDB Cloud Connection
 const dbConfig = {
   host: process.env.DB_HOST,
+  port: process.env.DB_PORT || 4000,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  port: process.env.DB_PORT || 4000,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
 };
 
+// Add SSL if CA file exists
 if (process.env.DB_CA_PATH && fs.existsSync(process.env.DB_CA_PATH)) {
   dbConfig.ssl = {
     ca: fs.readFileSync(process.env.DB_CA_PATH),
@@ -37,141 +48,22 @@ if (process.env.DB_CA_PATH && fs.existsSync(process.env.DB_CA_PATH)) {
   };
 }
 
-// Use createPool (better for deployment)
-const db = mysql.createPool(dbConfig);
+// Create pool
+const db = mysql.createPool(dbConfig).promise();
 
-// Test connection
-db.getConnection((err, connection) => {
-  if (err) {
-    console.error("❌ Error connecting to DB:", err);
+// Test DB connection
+(async () => {
+  try {
+    await db.query("SELECT 1");
+    console.log("✅ Database connected successfully");
+  } catch (err) {
+    console.error("❌ DB connection failed:", err);
     process.exit(1);
   }
-  console.log("✅ Database connected successfully");
-  if (connection) connection.release();
-});
+})();
 
-// Multer storage
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, "uploads/"),
-  filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`),
-});
-const upload = multer({ storage });
-
-// Routes
-app.get("/", (req, res) => {
-  res.status(200).json({ message: "Main Route..." });
-});
-
-// Get Jobs
-app.get("/getJobs", (req, res) => {
-  db.query("SELECT * FROM jobPostings", (err, result) => {
-    if (err) return res.status(500).json({ success: false, message: "Internal server error" });
-    res.status(200).json({ success: true, jobs: result });
-  });
-});
-
-// Get Applications
-app.get("/getApplications", (req, res) => {
-  db.query("SELECT * FROM jobApplications", (err, result) => {
-    if (err) return res.status(500).json({ success: false, message: "Internal server error" });
-    res.status(200).json({ success: true, applications: result });
-  });
-});
-
-// Submit Job Application
-app.post("/jobApplications", upload.single("resume"), (req, res) => {
-  const { name, phone, gender, email, location, jobTitle, companyName } = req.body;
-  const resume = req.file ? req.file.filename : null;
-
-  if (!name || !phone || !gender || !resume || !email || !location || !jobTitle || !companyName)
-    return res.status(400).json({ success: false, message: "All fields are required" });
-
-  const q = `INSERT INTO jobApplications 
-    (name, phone, gender, resume, email, location, jobTitle, companyName) 
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
-
-  db.query(q, [name, phone, gender, resume, email, location, jobTitle, companyName], (err) => {
-    if (err) return res.status(500).json({ success: false, message: "Something went wrong" });
-    res.status(200).json({ success: true, message: "Application submitted", jobTitle, companyName });
-  });
-});
-
-// Post Job
-app.post("/jobPosting", (req, res) => {
-  const { jobTitle, companyName, Location, salary, description_, jobType } = req.body;
-
-  if (!jobTitle || !companyName || !Location || !salary || !description_ || !jobType)
-    return res.status(400).json({ success: false, message: "All fields are required" });
-
-  const q = `INSERT INTO jobPostings (jobTitle, companyName, Location, salary, description_, jobType) 
-             VALUES (?, ?, ?, ?, ?, ?)`;
-
-  db.query(q, [jobTitle, companyName, Location, salary, description_, jobType], (err) => {
-    if (err)
-      return res.status(500).json({ success: false, message: "Something went wrong, please check again" });
-    res.status(200).json({ success: true, message: "Job posted successfully", jobTitle, companyName });
-  });
-});
-
-// Signup
-app.post("/users/signup", async (req, res) => {
-  const { userName, email, password } = req.body;
-  if (!userName || !email || !password)
-    return res.status(400).json({ success: false, message: "All fields are required" });
-
-  try {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const q = `INSERT INTO Form (userName, email, password) VALUES (?, ?, ?)`;
-    db.query(q, [userName, email, hashedPassword], (err) => {
-      if (err) return res.status(500).json({ success: false, message: "Something went wrong" });
-      res.status(200).json({ success: true, message: "Signup successful", userName, email });
-    });
-  } catch {
-    res.status(500).json({ success: false, message: "Internal Server Error" });
-  }
-});
-
-// Login
-app.post("/users/login", async (req, res) => {
-  const { email, password } = req.body;
-  if (!email || !password)
-    return res.status(400).json({ success: false, message: "Email and password are required" });
-
-  const q = `SELECT * FROM Form WHERE email = ?`;
-  db.query(q, [email], async (err, result) => {
-    if (err) return res.status(500).json({ success: false, message: "Internal server error" });
-    if (result.length === 0)
-      return res.status(401).json({ success: false, message: "Invalid email or password, Please Signup!" });
-
-    const isMatched = await bcrypt.compare(password, result[0].password);
-    if (!isMatched)
-      return res.status(401).json({ success: false, message: "Invalid email or password" });
-
-    res.status(200).json({ success: true, message: "Login successful", user: result[0] });
-  });
-});
-
-// Forgot password
-app.post("/users/forgot", async (req, res) => {
-  const { password, email } = req.body;
-  if (!email || !password)
-    return res.status(400).json({ success: false, message: "Email and password are required" });
-
-  try {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const q = `UPDATE Form SET password = ? WHERE email = ?`;
-    db.query(q, [hashedPassword, email], (err) => {
-      if (err) return res.status(500).json({ success: false, message: "Internal server error" });
-      res.status(200).json({ success: true, message: "Password updated successfully!" });
-    });
-  } catch {
-    res.status(500).json({ success: false, message: "Server error" });
-  }
-});
-
-// Email transporter
 function createTransporter() {
-  return mailer.createTransport({
+  return nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
     secure: false,
@@ -181,66 +73,136 @@ function createTransporter() {
     },
   });
 }
+app.get("/", (req, res) => res.status(200).json({ message: "Main Route..." }));
 
-// Send application email
+app.get("/getJobs", async (req, res) => {
+  try {
+    const [jobs] = await db.query("SELECT * FROM jobPostings");
+    res.status(200).json({ success: true, jobs });
+  } catch {
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
+
+app.get("/getApplications", async (req, res) => {
+  try {
+    const [applications] = await db.query("SELECT * FROM jobApplications");
+    res.status(200).json({ success: true, applications });
+  } catch {
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
+
+app.post("/jobApplications", upload.single("resume"), async (req, res) => {
+  const { name, phone, gender, email, location, jobTitle, companyName } = req.body;
+  const resume = req.file ? req.file.filename : null;
+  if (!name || !phone || !gender || !resume || !email || !location || !jobTitle || !companyName)
+    return res.status(400).json({ success: false, message: "All fields are required" });
+
+  const q = `INSERT INTO jobApplications (name, phone, gender, resume, email, location, jobTitle, companyName)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+  try {
+    await db.query(q, [name, phone, gender, resume, email, location, jobTitle, companyName]);
+    res.status(200).json({ success: true, message: "Application submitted", jobTitle, companyName });
+  } catch {
+    res.status(500).json({ success: false, message: "Something went wrong" });
+  }
+});
+
+app.post("/jobPosting", async (req, res) => {
+  const { jobTitle, companyName, Location, salary, description_, jobType } = req.body;
+  if (!jobTitle || !companyName || !Location || !salary || !description_ || !jobType)
+    return res.status(400).json({ success: false, message: "All fields are required" });
+
+  const q = `INSERT INTO jobPostings (jobTitle, companyName, Location, salary, description_, jobType)
+             VALUES (?, ?, ?, ?, ?, ?)`;
+  try {
+    await db.query(q, [jobTitle, companyName, Location, salary, description_, jobType]);
+    res.status(200).json({ success: true, message: "Job posted successfully", jobTitle, companyName });
+  } catch {
+    res.status(500).json({ success: false, message: "Something went wrong" });
+  }
+});
+
+app.post("/users/signup", async (req, res) => {
+  const { userName, email, password } = req.body;
+  if (!userName || !email || !password)
+    return res.status(400).json({ success: false, message: "All fields are required" });
+
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await db.query("INSERT INTO Form (userName, email, password) VALUES (?, ?, ?)", [userName, email, hashedPassword]);
+    res.status(200).json({ success: true, message: "Signup successful", userName, email });
+  } catch {
+    res.status(500).json({ success: false, message: "Something went wrong" });
+  }
+});
+
+app.post("/users/login", async (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password)
+    return res.status(400).json({ success: false, message: "Email and password are required" });
+
+  try {
+    const [users] = await db.query("SELECT * FROM Form WHERE email = ?", [email]);
+    if (users.length === 0) return res.status(401).json({ success: false, message: "Invalid email or password" });
+
+    const isMatched = await bcrypt.compare(password, users[0].password);
+    if (!isMatched) return res.status(401).json({ success: false, message: "Invalid email or password" });
+
+    res.status(200).json({ success: true, message: "Login successful", user: users[0] });
+  } catch {
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+});
+
+app.post("/users/forgot", async (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) return res.status(400).json({ success: false, message: "Email and password are required" });
+
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await db.query("UPDATE Form SET password = ? WHERE email = ?", [hashedPassword, email]);
+    res.status(200).json({ success: true, message: "Password updated successfully!" });
+  } catch {
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+});
+
+// Email routes
+async function sendEmail(to, subject, text, res) {
+  try {
+    const transporter = createTransporter();
+    await transporter.sendMail({ from: process.env.EMAIL_USER, to, subject, text });
+    res.status(200).json({ success: true, message: "Email sent successfully" });
+  } catch {
+    res.status(500).json({ success: false, message: "Failed to send email" });
+  }
+}
+
 app.post("/users/email", (req, res) => {
   const { name, email, jobTitle } = req.body;
-  const transporter = createTransporter();
-  const mail = {
-    from: process.env.EMAIL_USER,
-    to: email,
-    subject: "Regarding Job Opportunity",
-    text: `Dear ${name},\n\nThank you for applying for ${jobTitle}. We appreciate your interest.`,
-  };
-  transporter.sendMail(mail, (err) => {
-    if (err) return res.status(500).json({ success: false, message: "Failed to send email" });
-    res.status(200).json({ success: true, message: "Email sent successfully" });
-  });
+  sendEmail(email, "Regarding Job Opportunity", `Dear ${name},\n\nThank you for applying for ${jobTitle}.`, res);
 });
 
-// Accept email
 app.post("/acceptEmail", (req, res) => {
   const { name, email, jobTitle } = req.body;
-  const transporter = createTransporter();
-  const mail = {
-    from: process.env.EMAIL_USER,
-    to: email,
-    subject: "Job Application Update",
-    text: `Dear ${name},\n\nYour application for ${jobTitle} has been accepted.`,
-  };
-  transporter.sendMail(mail, (err) => {
-    if (err) return res.status(500).json({ success: false, message: "Failed to send email" });
-    res.status(200).json({ success: true, message: "Email sent successfully" });
-  });
+  sendEmail(email, "Job Application Update", `Dear ${name},\n\nYour application for ${jobTitle} has been accepted.`, res);
 });
 
-// Decline email
 app.post("/declineEmail", (req, res) => {
   const { name, email, jobTitle } = req.body;
-  const transporter = createTransporter();
-  const mail = {
-    from: process.env.EMAIL_USER,
-    to: email,
-    subject: "Job Application Update",
-    text: `Dear ${name},\n\nYour application for ${jobTitle} was not selected.`,
-  };
-  transporter.sendMail(mail, (err) => {
-    if (err) return res.status(500).json({ success: false, message: "Failed to send email" });
-    res.status(200).json({ success: true, message: "Email sent successfully" });
-  });
+  sendEmail(email, "Job Application Update", `Dear ${name},\n\nYour application for ${jobTitle} was not selected.`, res);
 });
 
-// Delete application
-app.delete("/deleteApplication/:id", (req, res) => {
-  const id = req.params.id;
-  const q = `DELETE FROM jobApplications WHERE id = ?`;
-  db.query(q, [id], (err) => {
-    if (err) return res.status(500).json({ success: false, message: "Internal server error" });
+app.delete("/deleteApplication/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    await db.query("DELETE FROM jobApplications WHERE id = ?", [id]);
     res.status(200).json({ success: true, message: "Application deleted successfully" });
-  });
+  } catch {
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`🚀 Server running at port ${PORT}`);
-});
+app.listen(PORT, () => console.log(`🚀 Server running at port ${PORT}`));
