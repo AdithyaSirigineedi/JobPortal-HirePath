@@ -11,23 +11,19 @@ const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use("/resumes", express.static("uploads"));
 
-// Ensure uploads folder exists
 const uploadsDir = path.join(__dirname, "uploads");
 if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir);
 
-// Multer storage
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, uploadsDir),
   filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`),
 });
 const upload = multer({ storage });
 
-// MySQL / TiDB Cloud Connection
 const dbConfig = {
   host: process.env.DB_HOST,
   port: process.env.DB_PORT || 4000,
@@ -39,7 +35,6 @@ const dbConfig = {
   queueLimit: 0,
 };
 
-// SSL config for TiDB Cloud
 if (process.env.DB_CA_PATH && fs.existsSync(path.join(__dirname, process.env.DB_CA_PATH))) {
   dbConfig.ssl = {
     ca: fs.readFileSync(path.join(__dirname, process.env.DB_CA_PATH)),
@@ -48,10 +43,8 @@ if (process.env.DB_CA_PATH && fs.existsSync(path.join(__dirname, process.env.DB_
   };
 }
 
-// Create pool with promises
 const db = mysql.createPool(dbConfig).promise();
 
-// Test DB connection
 (async () => {
   try {
     await db.query("SELECT 1");
@@ -62,7 +55,6 @@ const db = mysql.createPool(dbConfig).promise();
   }
 })();
 
-// Email transporter
 function createTransporter() {
   return nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -75,7 +67,6 @@ function createTransporter() {
   });
 }
 
-// Send email helper
 async function sendEmail(to, subject, text, res) {
   try {
     const transporter = createTransporter();
@@ -86,8 +77,6 @@ async function sendEmail(to, subject, text, res) {
     res.status(500).json({ success: false, message: "Failed to send email" });
   }
 }
-
-// Routes
 app.get("/", (req, res) => res.status(200).json({ message: "Main Route..." }));
 
 app.get("/getJobs", async (req, res) => {
