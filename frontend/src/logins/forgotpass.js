@@ -66,7 +66,7 @@ const Forgot = () => {
     }
 
     if (valid) {
-      fetch('https://jobportal-hirepath-production.up.railway.app/users/forgot', {
+      fetch('https://jobportal-hirepath.onrender.com/users/forgot', {
       method: "POST",
       headers: {
     "Content-Type": "application/json",
