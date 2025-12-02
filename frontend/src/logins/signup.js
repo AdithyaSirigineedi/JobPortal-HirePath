@@ -79,7 +79,7 @@ const SignupForm = () => {
       setPasswordError('');
     }
       if (valid) {
-      fetch('https://jobportal-hirepath-production.up.railway.app/users/signup', {
+      fetch('https://jobportal-hirepath.onrender.com/users/signup', {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
